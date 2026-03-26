@@ -40,16 +40,26 @@ const io = new Server(server, {
 io.on("connection", (socket) => {
   console.log("User connected");
 
-  socket.on("sendMessage", async (msg) => {
-    const message = new Message({
-      text: msg,
-      sender: "User"
-    });
 
-    await message.save();
+socket.on("sendMessage", async (msg) => {
 
-    io.emit("receiveMessage", message);
+  const message = new Message({
+    text: msg.text,
+    username: msg.username,
+    sender: msg.sender
   });
+
+  await message.save();
+
+  io.emit("receiveMessage", message);
+
+});
+
+
+
+
+
+  
 
   socket.on("disconnect", () => {
     console.log("User disconnected");
