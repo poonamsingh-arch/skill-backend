@@ -41,6 +41,7 @@ io.on("connection", (socket) => {
   console.log("User connected");
 
 
+
 socket.on("sendMessage", async (msg) => {
 
   const message = new Message({
@@ -54,6 +55,8 @@ socket.on("sendMessage", async (msg) => {
   io.emit("receiveMessage", message);
 
 });
+
+  
 
 
 
