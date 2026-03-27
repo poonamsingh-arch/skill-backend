@@ -44,11 +44,17 @@ io.on("connection", (socket) => {
 
 socket.on("sendMessage", async (msg) => {
 
-  const message = new Message({
-    text: msg.text,
-    username: msg.username,
-    sender: msg.sender
-  });
+const message = new Message({
+  text: msg.text,
+  username: msg.username || "User",
+  sender: msg.sender || "User"
+});
+
+
+
+
+
+  
 
   await message.save();
 
